@@ -92,7 +92,7 @@ bool Cache<T, KeyT>::lookup_update(KeyT key, F slow_get_page)
     if(next_freq_it == count_list.end() || (next_freq_it -> first != ((freq_it -> first) + 1)))
     {   
         LOX
-        count_list.insert(freq_it, std::pair(((freq_it -> first) + 1), std::list<element> {})); // может здесь проблема
+        next_freq_it = count_list.insert(next_freq_it, std::pair(((freq_it -> first) + 1), std::list<element> {})); // может здесь проблема
         LOX
     }
 
