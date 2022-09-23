@@ -89,7 +89,7 @@ bool cache<T, KeyT>::lookup_update(KeyT key, F slow_get_page)
      
     if(next_freq_it == count_list.end() || (next_freq_it -> first != ((freq_it -> first) + 1)))
     {   
-        next_freq_it = count_list.insert(next_freq_it, std::pair(((freq_it -> first) + 1), std::list<element> {})); // может здесь проблема
+        next_freq_it = count_list.insert(next_freq_it, std::pair(((freq_it -> first) + 1), std::list<element> {}));
          
     }
 
@@ -97,7 +97,6 @@ bool cache<T, KeyT>::lookup_update(KeyT key, F slow_get_page)
     auto &list = freq_it -> second;
     auto &next_list = next_freq_it -> second;
      
-    //next_list.splice(next_list.begin(), freq_it -> second, elem_it); // sick fault 
     next_list.splice(next_list.begin(), list, elem_it);
      
     elem_it -> parent = next_freq_it;
