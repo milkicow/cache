@@ -3,10 +3,10 @@ My implementing the LFU cache eviction scheme O(1). Also there is "perfect_cache
 
 ## Compiling 
 
-To compile each of the cache you need to use make:
+To compile each of the cache you need to use сmake:
 
 ``` 
-make 
+сmake 
 ```
 
 To compile each of the cache you need to make "cache" or "perfect_cache":
