@@ -56,11 +56,11 @@ public:
         auto erase = cache.begin();
         auto pos   = stream.begin();
 
-        for (auto cache_it = cache.begin(); cache_it != cache.end(); cache_it = std::next(cache_it))
+        for (auto cache_it = cache.begin(); cache_it != cache.end(); ++cache_it)
         {
             auto candidate = vector_it;
 
-            for (auto stream_it = vector_it; stream_it != stream.end(); stream_it = std::next(stream_it))
+            for (auto stream_it = vector_it; stream_it != stream.end(); ++stream_it)
             {   
                 if (*stream_it == cache_it->second) {
                     candidate = stream_it;
@@ -81,7 +81,7 @@ public:
 
     auto find_cache(KeyT key)
     {
-        for (auto cache_it = cache.begin(); cache_it != cache.end(); cache_it = std::next(cache_it))
+        for (auto cache_it = cache.begin(); cache_it != cache.end(); ++cache_it)
         {
             if(cache_it -> second == key) return cache_it;
         }
