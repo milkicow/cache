@@ -101,22 +101,12 @@ bool caches<T, KeyT>::lookup_update(F slow_get_page)
     auto key = *vector_it++;
     auto hit = find_cache(key);
 
-    // std::cout << "capacity = " << cache.size() << " \n";    
-    // for(int i = 0; i != cache.size(); i++)
-    // {
-    //     std::cout << cache[i].second << " ";
-    // }
-    // std::cout << std::endl;
-
-
-
     if(hit == cache.end())
     {
         if(full())
         {   
 
             auto res = find_last_occur();
-            // printf("elem %d will erase\n", res -> second);
             cache.erase(res);
         }
 
@@ -128,90 +118,3 @@ bool caches<T, KeyT>::lookup_update(F slow_get_page)
     return true;
 }
 };
-
-
-// template <typename T, typename KeyT = int>
-// class caches
-// {
-//     size_t capacity;
-
-
-//     std::vector<std::pair<page_t, KeyT>> keys;
-//     std::vector<std::pair<page_t, KeyT>> cache;
-
-//     using vector_it = typename std::vector<std::pair<page_t, KeyT>>::iterator;
-
-//     vector_it cur_keys_it = keys.begin();
-
-//     auto find_in_cache(KeyT key)
-//     {
-//         for(auto it = cache.begin(); it != cache.end(); std::next(it))
-//         {
-//             if(it -> second == key) return it;
-//         }
-//         return cache.end();
-//     }
-
-//     auto find_rep_occur(KeyT key)
-//     {
-//         for (auto it = cur_keys_it; it != keys.end(); std::next(it))
-//         {
-//             if(it -> second == key) return it;
-//         }
-//         return keys.end();
-//     }
-
-//     auto find_last_occur()
-//     {   
-//         auto max_distance = 0;
-//         auto last_occur = cache.begin();
-
-//         for(auto it = cache.begin(); it != cache.end(); std::next(it))
-//         {
-//             auto occur = find_rep_occur(it -> second);
-//             auto distance = std::distance(cur_keys_it, occur);
-//             if(distance > max_distance){
-//                 max_distance = distance;
-//                 last_occur = it;
-//             }
-//         }
-//         return last_occur;
-//     }
-
-//     public:
-//     caches(size_t size) : capacity(size), cur_keys_it(keys.begin()) {}
-
-//     template <typename F> 
-//     bool lookup_update(F slow_get_page);
-
-//     bool full() const { return cache.size() == capacity; }
-// };
-
-// template <typename T, typename KeyT>
-// template <typename F>
-// bool caches<T, KeyT>::lookup_update(F slow_get_page)
-// {   
-//     auto key = (cur_keys_it++) -> second;
-
-//     auto hit = find_in_cache(key);
-
-
-//     if(hit == cache.end())
-//     {
-//         if(full())
-//         {      
-//             cache.erase(find_last_occur());
-//         }
-
-//         cache.push_back(std::pair(slow_get_page(key), key)); 
-
-//         return false;
-//     }
-
-//     return true;
-
-// }
-// };
-
-
-//seg fault кайффф
