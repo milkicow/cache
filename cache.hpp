@@ -70,8 +70,7 @@ bool cache<T, KeyT>::lookup_update(KeyT key, F slow_get_page)
 
         if (lfu_node -> first != 1)
         {   
-             
-            count_list.push_front(std::pair(1, std::list<element> {}));
+            count_list.emplace_front(std::pair(1, std::list<element> {}));
         }
         
          
