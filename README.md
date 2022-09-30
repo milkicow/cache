@@ -3,29 +3,44 @@ My implementing the LFU cache eviction scheme O(1). Also there is "perfect_cache
 
 ## Compiling 
 
-To compile each of the cache you need to use сmake:
+To compile each of the cache you need to use сmake in the directory tmp:
 
 ``` 
-сmake 
+mkdir tmp
+сmake ..
 ```
 
-To compile each of the cache you need to make "cache" or "perfect_cache":
+To compile each of the cache you need to make "lfu" or "perfect":
 
 ```
-make cache
+make lfu
 ```
 ```
-make perfect_cache
+make perfect
+```
+
+To compile the test you need to make "tests":
+
+```
+make tests
 ```
 
 ## Run the program:
-LFU_cache:
+LFU_cache: ( in dir tmp )
 ```
-./cache < out.txt
+cd LFU_cache
+./lfu
 ```
-Perfect_cache:
+Perfect_cache: ( in dir tmp )
 
 ```
-./perfect_cache < out.txt
+cd perfect_cache
+./perfect
 ```
-You can find the test for 100 hundreds values in file out.txt
+## Test the program: 
+In dir tmp:
+
+```
+cd test
+./tests < ../../test/test.txt
+```
