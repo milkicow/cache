@@ -1,8 +1,6 @@
-add_executable(tests gtest.cpp)
+add_executable(tests gtest.cpp caches.cpp)
+add_subdirectory(googletest)
 
+target_include_directories(tests PRIVATE googletest/include ../LFU_cache/lib ../perfect_cache/lib)
 
-add_subdirectory(googletest) # add googletest subdirectory
-
-include_directories(googletest/include) # this is so we can #include <gtest/gtest.h>
-target_link_libraries(tests 
-                            PRIVATE gtest)
+target_link_libraries(tests PRIVATE gtest)
