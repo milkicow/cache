@@ -1,36 +1,4 @@
-#include <iostream>
-#include <iterator>
-#include <list>
-#include <unordered_map>
-#include <vector>
-#include <chrono>
-
-#include <stdio.h>
-
-#define __OUT__ stderr
-
-#define PRINT(str)     do{ fprintf(__OUT__, "%s\n", #str                                                              );   }while(0)
-#define PRINT_LINE     do{ fprintf(__OUT__, "I'm at %s at line %d in %s\n", __PRETTY_FUNCTION__, __LINE__, __FILE__   );   }while(0)
-#define PRINT_(str)    do{ fprintf(__OUT__, "[%s:%d] %s\n",                 __PRETTY_FUNCTION__, __LINE__, #str       );   }while(0)
-#define PRINT_PTR(ptr) do{ fprintf(__OUT__, "[%s:%d] pointer %s at %p\n",   __PRETTY_FUNCTION__, __LINE__, #ptr,  ptr );   }while(0)
-#define PRINT_C(char)  do{ fprintf(__OUT__, "[%s:%d] %s = %c  \n",          __PRETTY_FUNCTION__, __LINE__, #char, char);   }while(0)
-#define PRINT_S(str)   do{ fprintf(__OUT__, "[%s:%d] %s = %s  \n",          __PRETTY_FUNCTION__, __LINE__, #str,  str );   }while(0)
-#define PRINT_UL(num)  do{ fprintf(__OUT__, "[%s:%d] %s = %lu \n",          __PRETTY_FUNCTION__, __LINE__, #num,  num );   }while(0)
-#define PRINT_D(num)   do{ fprintf(__OUT__, "[%s:%d] %s = %d  \n",          __PRETTY_FUNCTION__, __LINE__, #num,  num );   }while(0)
-#define PRINT_X(num)   do{ fprintf(__OUT__, "[%s:%d] %s = %x  \n",          __PRETTY_FUNCTION__, __LINE__, #num,  num );   }while(0)
-#define PRINT_SM(s, n) do{ fprintf(__OUT__, "[%s:%d] %s = %.*s\n",          __PRETTY_FUNCTION__, __LINE__, #s,    n, s);   }while(0)
-
-struct page_t
-{
-    int id;
-    page_t() : page_t(0) {}
-    page_t(int num) : id(num) {}
-};
-
-page_t slow_get_page(int key)
-{
-    return page_t(key);
-}
+#include "header.h"
 
 namespace perfect_cache{
 
@@ -117,4 +85,32 @@ bool caches<T, KeyT>::lookup_update(F slow_get_page)
 
     return true;
 }
+
+int perfect_cache()
+{
+    int size = 0, number_of_pages = 0;
+    std::cin >> size >> number_of_pages;
+
+
+    std::vector<int> keys;
+
+    int hits = 0;
+    
+    for (int i = 0; i < number_of_pages; i++)
+    {   
+        int page_number = 0;
+        std::cin >> page_number;
+        keys.push_back(page_number);
+    }
+
+    perfect_cache::caches<page_t> caches(size, keys);
+
+    for (int i = 0; i < number_of_pages; i++)
+    {   
+        if (caches.lookup_update(slow_get_page)) hits++;
+    }
+
+    return hits;
+}
+
 };
