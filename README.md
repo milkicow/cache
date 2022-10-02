@@ -34,6 +34,14 @@ To compile the test you need to make "tests":
 make tests
 ```
 
+Also you can do:
+
+```
+make install DESTDIR=<path to install folder>
+```
+to collect all binary files in one folder
+
+
 ## Run the program:
 LFU_cache: ( in dir tmp )
 ```
@@ -46,12 +54,6 @@ Perfect_cache: ( in dir tmp )
 cd perfect_cache
 ./perfect
 ```
-Also you can do:
-
-```
-make install DESTDIR=<path to install folder>
-```
-to collect all binary files in one folder
 
 ## Test the program: 
 In dir tmp:
