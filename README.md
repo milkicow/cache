@@ -1,15 +1,6 @@
 # LFU_cache
 My implementing the LFU cache eviction scheme O(1). Also there is "perfect_cache" to see difference between LFU and ideal model that knows the future.
 
-## GoogleTest
-
-To use gtests you need to clone in dir test dir from googletest.git:
-
-```
-cd test
-git clone https://github.com/google/googletest.git -b release-1.12.0
-```
-
 ## Compiling 
 
 To compile each of the cache you need to use сmake in the directory tmp:
