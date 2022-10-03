@@ -1,5 +1,8 @@
 #include "cache.hpp"
 #include "perfect_cache.hpp"
+#include <fstream>
+
+#define LOX printf("line %d \n", __LINE__);
 
 struct page_t
 {
@@ -13,30 +16,31 @@ page_t slow_get_page(int key)
     return page_t(key);
 }
 
-int LFU()
+int LFU(std::ifstream &file)
 {
    
     int size = 0, number_of_pages = 0;
-    std::cin >> size >> number_of_pages;
-
+    file >> size >> number_of_pages;
+    LOX
+    std::cout << size << number_of_pages;
     lfu::cache<page_t> cache(size);
 
     int hits = 0;
     for (int i = 0; i < number_of_pages; i++)
     {
         int page_number = 0;
-        std::cin >> page_number;
+        file >> page_number;
+        LOX
         if (cache.lookup_update(page_number, slow_get_page)) hits++;
     }
 
     return hits;
 }
 
-int perfect()
+int perfect(std::ifstream &file)
 {
     int size = 0, number_of_pages = 0;
-    std::cin >> size >> number_of_pages;
-
+    file >> size >> number_of_pages;
 
     std::vector<int> keys;
 
@@ -45,7 +49,7 @@ int perfect()
     for (int i = 0; i < number_of_pages; i++)
     {   
         int page_number = 0;
-        std::cin >> page_number;
+        file >> page_number;
         keys.push_back(page_number);
     }
 
