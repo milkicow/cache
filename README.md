@@ -3,11 +3,17 @@ My implementing the LFU cache eviction scheme O(1). Also there is "perfect_cache
 
 ## Compiling 
 
-To compile each of the cache you need to use сmake in the directory tmp:
+To compile each of the cache you need to use сmake in the directory build:
 
 ``` 
-mkdir tmp
+mkdir build
+cd build
 сmake ..
+```
+
+To compile all:
+```
+make all
 ```
 
 To compile each of the cache you need to make "lfu" or "perfect":
@@ -25,31 +31,35 @@ To compile the test you need to make "tests":
 make tests
 ```
 
-Also you can do:
-
-```
-make install DESTDIR=<path to install folder>
-```
-to collect all binary files in one folder
-
-
 ## Run the program:
-LFU_cache: ( in dir tmp )
+
+You can find all binaries in dir build/bin
+
 ```
-cd LFU_cache
+cd build/bin
+```
+
+
+LFU_cache: 
+```
 ./lfu
 ```
-Perfect_cache: ( in dir tmp )
+Perfect_cache:
 
 ```
-cd perfect_cache
 ./perfect
 ```
 
 ## Test the program: 
-In dir tmp:
+
+Find binary in dir build/bin
 
 ```
-cd test
-./tests < ../../test/test.txt
+cd build/bin
+```
+
+Run tests:
+
+```
+./tests
 ```
