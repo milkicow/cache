@@ -45,31 +45,22 @@ make tests
 
 You can find all binaries in dir build/bin
 
-```
-cd build/bin
-```
-
 
 LFU_cache: 
 ```
-./lfu
+./build/lfu
 ```
 Perfect_cache:
 
 ```
-./perfect
+./build/perfect
 ```
 
 ## Test the program: 
 
-Find binary in dir build/bin
-
-```
-cd build/bin
-```
 
 Run tests:
 
 ```
-./tests
+./bin/tests
 ```
