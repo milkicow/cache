@@ -19,8 +19,7 @@ int LFU(std::ifstream &file)
    
     int size = 0, number_of_pages = 0;
     file >> size >> number_of_pages;
-
-    std::cout << size << number_of_pages;
+    
     lfu::cache<page_t> cache(size);
 
     int hits = 0;
