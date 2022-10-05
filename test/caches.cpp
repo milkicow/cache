@@ -2,8 +2,6 @@
 #include "perfect_cache.hpp"
 #include <fstream>
 
-#define LOX printf("line %d \n", __LINE__);
-
 struct page_t
 {
     int id;
@@ -21,7 +19,7 @@ int LFU(std::ifstream &file)
    
     int size = 0, number_of_pages = 0;
     file >> size >> number_of_pages;
-    LOX
+
     std::cout << size << number_of_pages;
     lfu::cache<page_t> cache(size);
 
@@ -30,7 +28,6 @@ int LFU(std::ifstream &file)
     {
         int page_number = 0;
         file >> page_number;
-        LOX
         if (cache.lookup_update(page_number, slow_get_page)) hits++;
     }
 
