@@ -5,9 +5,6 @@
 #include <vector>
 #include <chrono>
 
-
-
-
 namespace perfect_cache{
 
 template <typename T, typename KeyT = int>
@@ -34,16 +31,7 @@ public:
 
         for (auto cache_it = cache.begin(); cache_it != cache.end(); ++cache_it)
         {
-            auto candidate = vector_it;
-
-            for (auto stream_it = vector_it; stream_it != stream.end(); ++stream_it)
-            {   
-                if (*stream_it == cache_it->second) {
-                    candidate = stream_it;
-                    break;
-                }
-                candidate = stream.end();
-            }
+            auto candidate = find_stream(cache_it->second);
 
             if (candidate > pos) {
                 pos = candidate;
@@ -54,7 +42,6 @@ public:
         return erase;
     }
 
-
     auto find_cache(KeyT key)
     {
         for (auto cache_it = cache.begin(); cache_it != cache.end(); ++cache_it)
@@ -63,6 +50,15 @@ public:
         }
 
         return cache.end();
+    }
+
+    auto find_stream(KeyT key)
+    {
+        for(auto stream_it = vector_it; stream_it != stream.end(); ++stream_it)
+        {
+            if(*stream_it == key) return stream_it;
+        }
+        return stream.end();
     }
 
     bool full() const { return cache.size() == capacity; }
@@ -78,10 +74,11 @@ bool caches<T, KeyT>::lookup_update(F slow_get_page)
     auto hit = find_cache(key);
 
     if(hit == cache.end())
-    {
-        if(full())
-        {   
+    {   
+        if(find_stream(*(vector_it - 1)) == stream.end()) return false;
 
+        if(full())
+        {
             auto res = find_last_occur();
             cache.erase(res);
         }

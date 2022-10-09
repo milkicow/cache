@@ -40,14 +40,14 @@ TEST(TestPerfect_cache, TestNumber0)
 TEST(TestPerfect_cache, TestNumber1)
 {
     std::ifstream file(concat("/test/Testperf1.txt"));
-    EXPECT_EQ(perfect(file), 3);
+    EXPECT_EQ(perfect(file), 4);
     file.close();
 }
 
 TEST(TestPerfect_cache, TestNumber2)
 {
     std::ifstream file(concat("/test/Testperf2.txt"));
-    EXPECT_EQ(perfect(file), 4);
+    EXPECT_EQ(perfect(file), 7);
     file.close();
 }
 
