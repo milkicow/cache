@@ -1,3 +1,5 @@
 *.out
 tmp
 build
+.vscode
+.DS_Store
